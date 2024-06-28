@@ -16,46 +16,23 @@ dataSources:
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - BukNFTSet
-        - BukProtocolSet
-        - DeletedListing
-        - ListingCreated
-        - Paused
-        - Relisted
-        - RoleAdminChanged
-        - RoleGranted
-        - RoleRevoked
-        - RoomBought
-        - StableTokenSet
-        - Unpaused
+        - Booking
       abis:
         - name: Marketplace
           file: ./abis/Marketplace.json
+        - name: BukProtocol
+          file: ./abis/BukProtocol.json
+        - name: BukNFTs
+          file: ./abis/BukNFTs.json
       eventHandlers:
-        - event: BukNFTSet(address)
-          handler: handleBukNFTSet
-        - event: BukProtocolSet(address)
-          handler: handleBukProtocolSet
         - event: DeletedListing(indexed uint256)
           handler: handleDeletedListing
         - event: ListingCreated(address,indexed uint256,uint256)
           handler: handleListingCreated
-        - event: Paused(address)
-          handler: handlePaused
         - event: Relisted(indexed uint256,uint256,uint256)
           handler: handleRelisted
-        - event: RoleAdminChanged(indexed bytes32,indexed bytes32,indexed bytes32)
-          handler: handleRoleAdminChanged
-        - event: RoleGranted(indexed bytes32,indexed address,indexed address)
-          handler: handleRoleGranted
-        - event: RoleRevoked(indexed bytes32,indexed address,indexed address)
-          handler: handleRoleRevoked
         - event: RoomBought(indexed uint256,address,address,uint256)
           handler: handleRoomBought
-        - event: StableTokenSet(address)
-          handler: handleStableTokenSet
-        - event: Unpaused(address)
-          handler: handleUnpaused
       file: ./src/marketplace.ts
   - kind: ethereum
     name: BukProtocol
@@ -70,64 +47,10 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - BookRoom
-        - BookingRefund
-        - CancelRoom
-        - CheckinRooms
-        - CheckoutRooms
-        - EmergencyCancellation
-        - MintedBookingNFT
-        - BukProtocolPaused
-        - SetAdminWallet
-        - SetBukNFTs
-        - SetBukPOSNFTs
-        - SetBukTreasury
-        - SetBukWallet
-        - SetCommission
-        - SetRoyaltiesContract
-        - SetSignerVerifier
-        - SetStableToken
-        - ToggleTradeability
-        - BukProtocolUnpaused
       abis:
         - name: BukProtocol
           file: ./abis/BukProtocol.json
       eventHandlers:
         - event: BookRoom(indexed uint256,indexed bytes32,uint256,uint256,uint256,uint256)
           handler: handleBookRoom
-        - event: BookingRefund(uint256,address)
-          handler: handleBookingRefund
-        - event: CancelRoom(uint256[],indexed uint256,indexed bool)
-          handler: handleCancelRoom
-        - event: CheckinRooms(uint256[],bool)
-          handler: handleCheckinRooms
-        - event: CheckoutRooms(uint256[],bool)
-          handler: handleCheckoutRooms
-        - event: EmergencyCancellation(indexed uint256,indexed bool)
-          handler: handleEmergencyCancellation
-        - event: MintedBookingNFT(uint256[],bool)
-          handler: handleMintedBookingNFT
-        - event: Paused(address)
-          handler: handlePaused
-        - event: SetAdminWallet(address)
-          handler: handleSetAdminWallet
-        - event: SetBukNFTs(address)
-          handler: handleSetBukNFTs
-        - event: SetBukPOSNFTs(address)
-          handler: handleSetBukPOSNFTs
-        - event: SetBukTreasury(address)
-          handler: handleSetBukTreasury
-        - event: SetBukWallet(address)
-          handler: handleSetBukWallet
-        - event: SetCommission(uint256)
-          handler: handleSetCommission
-        - event: SetRoyaltiesContract(address)
-          handler: handleSetRoyaltiesContract
-        - event: SetSignerVerifier(address)
-          handler: handleSetSignerVerifier
-        - event: SetStableToken(address)
-          handler: handleSetStableToken
-        - event: ToggleTradeability(indexed uint256,indexed bool)
-          handler: handleToggleTradeability
-        - event: Unpaused(address)
-          handler: handleUnpaused
       file: ./src/buk-protocol.ts

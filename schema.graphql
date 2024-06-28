@@ -1,19 +1,3 @@
-type BukNFTSet @entity(immutable: true) {
-	id: Bytes!
-	newAddress: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type BukProtocolSet @entity(immutable: true) {
-	id: Bytes!
-	newAddress: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
 type DeletedListing @entity(immutable: true) {
 	id: Bytes!
 	tokenId: BigInt! # uint256
@@ -32,49 +16,11 @@ type ListingCreated @entity(immutable: true) {
 	transactionHash: Bytes!
 }
 
-type Paused @entity(immutable: true) {
-	id: Bytes!
-	account: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
 type Relisted @entity(immutable: true) {
 	id: Bytes!
 	tokenId: BigInt! # uint256
 	oldPrice: BigInt! # uint256
 	newPrice: BigInt! # uint256
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type RoleAdminChanged @entity(immutable: true) {
-	id: Bytes!
-	role: Bytes! # bytes32
-	previousAdminRole: Bytes! # bytes32
-	newAdminRole: Bytes! # bytes32
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type RoleGranted @entity(immutable: true) {
-	id: Bytes!
-	role: Bytes! # bytes32
-	account: Bytes! # address
-	sender: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type RoleRevoked @entity(immutable: true) {
-	id: Bytes!
-	role: Bytes! # bytes32
-	account: Bytes! # address
-	sender: Bytes! # address
 	blockNumber: BigInt!
 	blockTimestamp: BigInt!
 	transactionHash: Bytes!
@@ -91,21 +37,6 @@ type RoomBought @entity(immutable: true) {
 	transactionHash: Bytes!
 }
 
-type StableTokenSet @entity(immutable: true) {
-	id: Bytes!
-	newAddress: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type Unpaused @entity(immutable: true) {
-	id: Bytes!
-	account: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
 type BookRoom @entity(immutable: true) {
 	id: Bytes!
 	booking: BigInt! # uint256
@@ -114,158 +45,6 @@ type BookRoom @entity(immutable: true) {
 	checkout: BigInt! # uint256
 	adult: BigInt! # uint256
 	child: BigInt! # uint256
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type BookingRefund @entity(immutable: true) {
-	id: Bytes!
-	total: BigInt! # uint256
-	owner: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type CancelRoom @entity(immutable: true) {
-	id: Bytes!
-	bookingIds: [BigInt!]! # uint256[]
-	total: BigInt! # uint256
-	status: Boolean! # bool
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type CheckinRooms @entity(immutable: true) {
-	id: Bytes!
-	bookings: [BigInt!]! # uint256[]
-	status: Boolean! # bool
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type CheckoutRooms @entity(immutable: true) {
-	id: Bytes!
-	bookings: [BigInt!]! # uint256[]
-	status: Boolean! # bool
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type EmergencyCancellation @entity(immutable: true) {
-	id: Bytes!
-	bookingId: BigInt! # uint256
-	status: Boolean! # bool
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type MintedBookingNFT @entity(immutable: true) {
-	id: Bytes!
-	bookings: [BigInt!]! # uint256[]
-	status: Boolean! # bool
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type BukProtocolPaused @entity(immutable: true) {
-	id: Bytes!
-	account: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type SetAdminWallet @entity(immutable: true) {
-	id: Bytes!
-	newAdminWallet: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type SetBukNFTs @entity(immutable: true) {
-	id: Bytes!
-	newNFTContract: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type SetBukPOSNFTs @entity(immutable: true) {
-	id: Bytes!
-	newNFTPOSContract: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type SetBukTreasury @entity(immutable: true) {
-	id: Bytes!
-	newTreasuryContract: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type SetBukWallet @entity(immutable: true) {
-	id: Bytes!
-	newBukWalletContract: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type SetCommission @entity(immutable: true) {
-	id: Bytes!
-	newCommission: BigInt! # uint256
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type SetRoyaltiesContract @entity(immutable: true) {
-	id: Bytes!
-	newRoyaltiesContract: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type SetSignerVerifier @entity(immutable: true) {
-	id: Bytes!
-	newSignerVerifier: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type SetStableToken @entity(immutable: true) {
-	id: Bytes!
-	newStableToken: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type ToggleTradeability @entity(immutable: true) {
-	id: Bytes!
-	tokenId: BigInt! # uint256
-	tradeable: Boolean! # bool
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type BukProtocolUnpaused @entity(immutable: true) {
-	id: Bytes!
-	account: Bytes! # address
 	blockNumber: BigInt!
 	blockTimestamp: BigInt!
 	transactionHash: Bytes!

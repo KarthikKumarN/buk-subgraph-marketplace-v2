@@ -41,8 +41,8 @@ type BookRoom @entity(immutable: true) {
 	id: Bytes!
 	booking: BigInt! # uint256
 	propertyId: Bytes! # bytes32
-	checkin: BigInt! # uint256
-	checkout: BigInt! # uint256
+	checkIn: BigInt! # uint256
+	checkOut: BigInt! # uint256
 	adult: BigInt! # uint256
 	child: BigInt! # uint256
 	blockNumber: BigInt!
@@ -50,14 +50,15 @@ type BookRoom @entity(immutable: true) {
 	transactionHash: Bytes!
 }
 
+# Each listing is considered as booking for sale
 type Booking @entity(immutable: true) {
 	id: Bytes!
 	nftId: BigInt! # uint256
 	propertyId: String! # uint256
 	adult: BigInt! # uint256
 	child: BigInt! # uint256
-	checkin: BigInt # uint256
-	checkout: BigInt # uint256
+	checkIn: BigInt # uint256
+	checkOut: BigInt # uint256
 	owner: Bytes # address
 	status: String
 	ipfsUri: String

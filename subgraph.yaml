@@ -57,3 +57,77 @@ dataSources:
         - event: Unpaused(address)
           handler: handleUnpaused
       file: ./src/marketplace.ts
+  - kind: ethereum
+    name: BukProtocol
+    network: matic
+    source:
+      address: "0x72a77f973650e4410f603568DE9A69d62c753A3b"
+      abi: BukProtocol
+      startBlock: 58669868
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - BookRoom
+        - BookingRefund
+        - CancelRoom
+        - CheckinRooms
+        - CheckoutRooms
+        - EmergencyCancellation
+        - MintedBookingNFT
+        - BukProtocolPaused
+        - SetAdminWallet
+        - SetBukNFTs
+        - SetBukPOSNFTs
+        - SetBukTreasury
+        - SetBukWallet
+        - SetCommission
+        - SetRoyaltiesContract
+        - SetSignerVerifier
+        - SetStableToken
+        - ToggleTradeability
+        - BukProtocolUnpaused
+      abis:
+        - name: BukProtocol
+          file: ./abis/BukProtocol.json
+      eventHandlers:
+        - event: BookRoom(indexed uint256,indexed bytes32,uint256,uint256,uint256,uint256)
+          handler: handleBookRoom
+        - event: BookingRefund(uint256,address)
+          handler: handleBookingRefund
+        - event: CancelRoom(uint256[],indexed uint256,indexed bool)
+          handler: handleCancelRoom
+        - event: CheckinRooms(uint256[],bool)
+          handler: handleCheckinRooms
+        - event: CheckoutRooms(uint256[],bool)
+          handler: handleCheckoutRooms
+        - event: EmergencyCancellation(indexed uint256,indexed bool)
+          handler: handleEmergencyCancellation
+        - event: MintedBookingNFT(uint256[],bool)
+          handler: handleMintedBookingNFT
+        - event: Paused(address)
+          handler: handlePaused
+        - event: SetAdminWallet(address)
+          handler: handleSetAdminWallet
+        - event: SetBukNFTs(address)
+          handler: handleSetBukNFTs
+        - event: SetBukPOSNFTs(address)
+          handler: handleSetBukPOSNFTs
+        - event: SetBukTreasury(address)
+          handler: handleSetBukTreasury
+        - event: SetBukWallet(address)
+          handler: handleSetBukWallet
+        - event: SetCommission(uint256)
+          handler: handleSetCommission
+        - event: SetRoyaltiesContract(address)
+          handler: handleSetRoyaltiesContract
+        - event: SetSignerVerifier(address)
+          handler: handleSetSignerVerifier
+        - event: SetStableToken(address)
+          handler: handleSetStableToken
+        - event: ToggleTradeability(indexed uint256,indexed bool)
+          handler: handleToggleTradeability
+        - event: Unpaused(address)
+          handler: handleUnpaused
+      file: ./src/buk-protocol.ts

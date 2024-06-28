@@ -1,0 +1,741 @@
+[
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_bukTreasuryContract",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_stableTokenAddr",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_bukWalletAddr",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_signVerifierContract",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_royaltiesContractAddr",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "booking",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes32",
+        "name": "propertyId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "checkin",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "checkout",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "adult",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "child",
+        "type": "uint256"
+      }
+    ],
+    "name": "BookRoom",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "total",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "BookingRefund",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "bookingIds",
+        "type": "uint256[]"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "total",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "bool",
+        "name": "status",
+        "type": "bool"
+      }
+    ],
+    "name": "CancelRoom",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "bookings",
+        "type": "uint256[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "status",
+        "type": "bool"
+      }
+    ],
+    "name": "CheckinRooms",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "bookings",
+        "type": "uint256[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "status",
+        "type": "bool"
+      }
+    ],
+    "name": "CheckoutRooms",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "bookingId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "bool",
+        "name": "status",
+        "type": "bool"
+      }
+    ],
+    "name": "EmergencyCancellation",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256[]",
+        "name": "bookings",
+        "type": "uint256[]"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "status",
+        "type": "bool"
+      }
+    ],
+    "name": "MintedBookingNFT",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "Paused",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newAdminWallet",
+        "type": "address"
+      }
+    ],
+    "name": "SetAdminWallet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newNFTContract",
+        "type": "address"
+      }
+    ],
+    "name": "SetBukNFTs",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newNFTPOSContract",
+        "type": "address"
+      }
+    ],
+    "name": "SetBukPOSNFTs",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newTreasuryContract",
+        "type": "address"
+      }
+    ],
+    "name": "SetBukTreasury",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newBukWalletContract",
+        "type": "address"
+      }
+    ],
+    "name": "SetBukWallet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newCommission",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetCommission",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newRoyaltiesContract",
+        "type": "address"
+      }
+    ],
+    "name": "SetRoyaltiesContract",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newSignerVerifier",
+        "type": "address"
+      }
+    ],
+    "name": "SetSignerVerifier",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newStableToken",
+        "type": "address"
+      }
+    ],
+    "name": "SetStableToken",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "bool",
+        "name": "tradeable",
+        "type": "bool"
+      }
+    ],
+    "name": "ToggleTradeability",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "Unpaused",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_BOOKING_LIMIT",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256[]", "name": "_total", "type": "uint256[]" },
+      { "internalType": "uint256[]", "name": "_baseRate", "type": "uint256[]" },
+      {
+        "internalType": "uint256[]",
+        "name": "_minSalePrice",
+        "type": "uint256[]"
+      },
+      { "internalType": "uint256[]", "name": "_adult", "type": "uint256[]" },
+      { "internalType": "uint256[]", "name": "_child", "type": "uint256[]" },
+      { "internalType": "bytes32", "name": "_propertyId", "type": "bytes32" },
+      { "internalType": "uint256", "name": "_checkin", "type": "uint256" },
+      { "internalType": "uint256", "name": "_checkout", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "_tradeTimeLimit",
+        "type": "uint256"
+      },
+      { "internalType": "bool", "name": "_tradeable", "type": "bool" }
+    ],
+    "name": "bookRooms",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256[]", "name": "_total", "type": "uint256[]" },
+      { "internalType": "uint256[]", "name": "_baseRate", "type": "uint256[]" },
+      {
+        "internalType": "uint256[]",
+        "name": "_minSalePrice",
+        "type": "uint256[]"
+      },
+      { "internalType": "uint256[]", "name": "_adult", "type": "uint256[]" },
+      { "internalType": "uint256[]", "name": "_child", "type": "uint256[]" },
+      { "internalType": "bytes32", "name": "_propertyId", "type": "bytes32" },
+      { "internalType": "uint256", "name": "_checkin", "type": "uint256" },
+      { "internalType": "uint256", "name": "_checkout", "type": "uint256" },
+      {
+        "internalType": "uint256",
+        "name": "_tradeTimeLimit",
+        "type": "uint256"
+      },
+      { "internalType": "bool", "name": "_tradeable", "type": "bool" },
+      { "internalType": "address", "name": "_user", "type": "address" }
+    ],
+    "name": "bookRoomsOwner",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256[]", "name": "_ids", "type": "uint256[]" },
+      { "internalType": "address", "name": "_owner", "type": "address" }
+    ],
+    "name": "bookingRefund",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256[]", "name": "_ids", "type": "uint256[]" },
+      {
+        "internalType": "uint256[]",
+        "name": "_penalties",
+        "type": "uint256[]"
+      },
+      { "internalType": "uint256[]", "name": "_refunds", "type": "uint256[]" },
+      { "internalType": "uint256[]", "name": "_charges", "type": "uint256[]" },
+      { "internalType": "address", "name": "_bookingOwner", "type": "address" },
+      { "internalType": "bytes", "name": "_signature", "type": "bytes" }
+    ],
+    "name": "cancelRooms",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256[]", "name": "_ids", "type": "uint256[]" }
+    ],
+    "name": "checkin",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256[]", "name": "_ids", "type": "uint256[]" },
+      {
+        "internalType": "address[]",
+        "name": "_recipients",
+        "type": "address[]"
+      }
+    ],
+    "name": "checkout",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "commission",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_id", "type": "uint256" },
+      { "internalType": "uint256", "name": "_refund", "type": "uint256" },
+      { "internalType": "uint256", "name": "_charges", "type": "uint256" },
+      { "internalType": "address", "name": "_bookingOwner", "type": "address" }
+    ],
+    "name": "emergencyCancellation",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" }
+    ],
+    "name": "getBookingDetails",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "id", "type": "uint256" },
+          { "internalType": "uint256", "name": "tokenId", "type": "uint256" },
+          {
+            "internalType": "bytes32",
+            "name": "propertyId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "enum IBukProtocol.BookingStatus",
+            "name": "status",
+            "type": "uint8"
+          },
+          { "internalType": "uint256", "name": "adult", "type": "uint256" },
+          { "internalType": "uint256", "name": "child", "type": "uint256" },
+          {
+            "internalType": "address",
+            "name": "firstOwner",
+            "type": "address"
+          },
+          { "internalType": "uint256", "name": "checkin", "type": "uint256" },
+          { "internalType": "uint256", "name": "checkout", "type": "uint256" },
+          { "internalType": "uint256", "name": "total", "type": "uint256" },
+          { "internalType": "uint256", "name": "baseRate", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "commission",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minSalePrice",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tradeTimeLimit",
+            "type": "uint256"
+          },
+          { "internalType": "bool", "name": "tradeable", "type": "bool" }
+        ],
+        "internalType": "struct IBukProtocol.Booking",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" }
+    ],
+    "name": "getRoyaltyInfo",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "address", "name": "receiver", "type": "address" },
+          {
+            "internalType": "uint96",
+            "name": "royaltyFraction",
+            "type": "uint96"
+          }
+        ],
+        "internalType": "struct IBukRoyalties.Royalty[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getWallets",
+    "outputs": [
+      { "internalType": "address", "name": "nftContract", "type": "address" },
+      {
+        "internalType": "address",
+        "name": "nftPOSContract",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "royaltiesContract",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "signatureVerifier",
+        "type": "address"
+      },
+      { "internalType": "address", "name": "bukTreasury", "type": "address" },
+      { "internalType": "address", "name": "stableToken", "type": "address" },
+      { "internalType": "address", "name": "bukWallet", "type": "address" },
+      { "internalType": "address", "name": "admin", "type": "address" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256[]", "name": "_ids", "type": "uint256[]" },
+      { "internalType": "string[]", "name": "_uri", "type": "string[]" },
+      { "internalType": "address", "name": "_user", "type": "address" }
+    ],
+    "name": "mintBukNFTOwner",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pause",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "paused",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_adminAddr", "type": "address" }
+    ],
+    "name": "setAdmin",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_nftContractAddr",
+        "type": "address"
+      }
+    ],
+    "name": "setBukNFTs",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_nftPOSContractAddr",
+        "type": "address"
+      }
+    ],
+    "name": "setBukPOSNFTs",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_bukTreasuryContract",
+        "type": "address"
+      }
+    ],
+    "name": "setBukTreasury",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "address", "name": "_bukWalletAddr", "type": "address" }
+    ],
+    "name": "setBukWallet",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_newCommission", "type": "uint256" }
+    ],
+    "name": "setCommission",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_royaltiesContractAddr",
+        "type": "address"
+      }
+    ],
+    "name": "setRoyaltiesContract",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "__signatureVerifier",
+        "type": "address"
+      }
+    ],
+    "name": "setSignatureVerifier",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_stableTokenAddress",
+        "type": "address"
+      }
+    ],
+    "name": "setStableToken",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "_tokenId", "type": "uint256" }
+    ],
+    "name": "toggleTradeability",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "unpause",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

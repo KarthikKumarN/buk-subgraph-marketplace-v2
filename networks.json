@@ -3,6 +3,9 @@
     "Marketplace": {
       "address": "0x631AC30648AF0Baa2B8CeFcfBa463Bba8b68A902",
       "startBlock": 5866987
+    },
+    "BukProtocol": {
+      "address": "0x72a77f973650e4410f603568DE9A69d62c753A3b"
     }
   }
 }

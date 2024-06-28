@@ -7,8 +7,8 @@ export function handleBookRoom(event: BookRoomEvent): void {
 	);
 	entity.booking = event.params.booking;
 	entity.propertyId = event.params.propertyId;
-	entity.checkin = event.params.checkin;
-	entity.checkout = event.params.checkout;
+	entity.checkIn = event.params.checkin;
+	entity.checkOut = event.params.checkout;
 	entity.adult = event.params.adult;
 	entity.child = event.params.child;
 

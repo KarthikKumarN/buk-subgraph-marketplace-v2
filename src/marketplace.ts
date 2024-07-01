@@ -8,13 +8,7 @@ import {
 	Relisted as RelistedEvent,
 	RoomBought as RoomBoughtEvent,
 } from "../generated/Marketplace/Marketplace";
-import {
-	Booking,
-	DeletedListing,
-	ListingCreated,
-	Relisted,
-	RoomBought,
-} from "../generated/schema";
+import { Booking } from "../generated/schema";
 import { bytesToString, getStatus } from "./helper";
 
 // FIXME Before production, replace the address with the correct one

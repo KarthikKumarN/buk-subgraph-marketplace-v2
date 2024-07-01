@@ -6,7 +6,7 @@ schema:
 dataSources:
   - kind: ethereum
     name: Marketplace
-    network: matic
+    network: polygon-amoy
     source:
       address: "0xe19D79B31278B65Aa7b77F3AEA260A3e21A5a618"
       abi: Marketplace

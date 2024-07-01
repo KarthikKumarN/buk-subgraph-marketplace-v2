@@ -10,7 +10,7 @@ dataSources:
     source:
       address: "0xe19D79B31278B65Aa7b77F3AEA260A3e21A5a618"
       abi: Marketplace
-      startBlock: 5866987
+      startBlock: 7023473
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -36,11 +36,11 @@ dataSources:
       file: ./src/marketplace.ts
   - kind: ethereum
     name: BukProtocol
-    network: matic
+    network: polygon-amoy
     source:
-      address: "0x72a77f973650e4410f603568DE9A69d62c753A3b"
+      address: "0x32a20C3f1386CDAC2103056E26b5e9B4b8501E5F"
       abi: BukProtocol
-      startBlock: 58669868
+      startBlock: 7023462
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7

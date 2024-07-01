@@ -58,8 +58,8 @@ export function handleListingCreated(event: ListingCreatedEvent): void {
 		entity.propertyId = propertyId;
 		entity.adult = booking.value.adult;
 		entity.child = booking.value.child;
-		entity.checkIn = booking.value.checkin;
-		entity.checkOut = booking.value.checkout;
+		entity.checkin = booking.value.checkin;
+		entity.checkout = booking.value.checkout;
 		entity.owner = listing.value.owner;
 		entity.price = listing.value.price;
 		entity.index = listing.value.index;
@@ -118,8 +118,8 @@ export function handleRelisted(event: RelistedEvent): void {
 		entity.propertyId = propertyId;
 		entity.adult = booking.value.adult;
 		entity.child = booking.value.child;
-		entity.checkIn = booking.value.checkin;
-		entity.checkOut = booking.value.checkout;
+		entity.checkin = booking.value.checkin;
+		entity.checkout = booking.value.checkout;
 		entity.owner = listing.value.owner;
 		entity.price = listing.value.price;
 		entity.index = listing.value.index;
@@ -179,8 +179,8 @@ export function handleDeletedListing(event: DeletedListingEvent): void {
 		entity.propertyId = propertyId;
 		entity.adult = booking.value.adult;
 		entity.child = booking.value.child;
-		entity.checkIn = booking.value.checkin;
-		entity.checkOut = booking.value.checkout;
+		entity.checkin = booking.value.checkin;
+		entity.checkout = booking.value.checkout;
 		entity.owner = Bytes.fromHexString(DEFAULT_ADDRESS);
 		entity.price = BigInt.fromI32(0);
 		entity.index = listing.value.index;
@@ -234,8 +234,8 @@ export function handleRoomBought(event: RoomBoughtEvent): void {
 		entity.propertyId = propertyId;
 		entity.adult = booking.value.adult;
 		entity.child = booking.value.child;
-		entity.checkIn = booking.value.checkin;
-		entity.checkOut = booking.value.checkout;
+		entity.checkin = booking.value.checkin;
+		entity.checkout = booking.value.checkout;
 		entity.owner = Bytes.fromHexString(DEFAULT_ADDRESS);
 		entity.price = BigInt.fromI32(0);
 		entity.index = listing.value.index;
